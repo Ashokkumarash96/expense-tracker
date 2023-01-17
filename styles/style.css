@@ -143,6 +143,8 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
+  display: flexbox;
+  flex-direction: column;
 }
 
 .list li {
