@@ -132,7 +132,7 @@ input {
   color: var(--clr-white);
   display: block;
   width: 100%;
-  margin: 10px 0 30px;
+  margin: 20px 0 30px;
   padding: 10px;
   border-radius: 5px;
   font-size: 1.2rem;
@@ -186,4 +186,27 @@ input {
 
 .list li:hover .delete-btn {
   opacity: 1;
+}
+
+@media screen and (max-width: 468px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .divide {
+    padding: 0px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  body {
+    scale: 0.8;
+  }
+
+
+  .divide {
+    padding: 0px;
+  }
 }
