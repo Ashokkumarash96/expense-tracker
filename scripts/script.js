@@ -1,4 +1,6 @@
 "use strict";
+
+// DOM elements
 let balanceEl = document.getElementById("balance");
 let moneyPlusEl = document.getElementById("money-plus");
 let moneyMinusEl = document.getElementById("money-minus");
@@ -7,26 +9,30 @@ let formEl = document.getElementById("form");
 let transactionEl = document.getElementById("transaction");
 let amountEl = document.getElementById("amount");
 
+// Transactions array
 let transactions = [];
 transactions =
   localStorage.getItem("transactions") != null
     ? JSON.parse(localStorage.getItem("transactions"))
     : [];
 
+// Initialize the application
 let init = function () {
   listEl.innerHTML = null;
   transactions.forEach(addTransactionDOM);
   updateValues();
 };
 
+// Add transaction to the DOM
 let addTransactionDOM = function (transaction) {
   let item = document.createElement("li");
   item.classList.add(transaction.amount < 0 ? "minus" : "plus");
   item.innerHTML = `${transaction.transaction} <span>${transaction.amount}</span>
-    <button class="delete-btn" onclick = "removeTransaction(${transaction.id})">X</button>`;
+    <button class="delete-btn" onclick="removeTransaction(${transaction.id})">X</button>`;
   listEl.appendChild(item);
 };
 
+// Remove transaction by ID
 let removeTransaction = function (id) {
   transactions = transactions.filter((transaction) => transaction.id !== id);
 
@@ -35,6 +41,7 @@ let removeTransaction = function (id) {
   init();
 };
 
+// Update balance, income, and expense values
 let updateValues = function () {
   let amounts = transactions.map((transaction) => transaction.amount);
   let income = amounts
@@ -50,7 +57,7 @@ let updateValues = function () {
   balanceEl.innerText = `₹${total}`;
 };
 
-//event listener
+// Event listener for form submission
 formEl.addEventListener("submit", (e) => {
   e.preventDefault();
   if (transactionEl.value.trim() === "" || amountEl.value.trim() === "") {
@@ -70,4 +77,5 @@ formEl.addEventListener("submit", (e) => {
   }
 });
 
+// Initialize the application
 init();
